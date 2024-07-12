@@ -52,7 +52,15 @@ app.get("/", async (req,res) => {
 app.use("/user",userRoute);
 app.use("/blog",blogRoute);
 
-app.listen(PORT, () => console.log(`Server started at PORT:${PORT}`));
+
+
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server started at PORT: ${PORT}`);
+});
+
+server.keepAliveTimeout = 120 * 1000; // 120 seconds
+server.headersTimeout = 120 * 1000;  // 120 seconds
+
 
 
 
