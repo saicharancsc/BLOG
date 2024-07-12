@@ -22,8 +22,14 @@ const PORT= process.env.PORT ||2000;
 //it is dynamical variable
 //export PORT = some portno. 
 
-mongoose.connect(process.env.MONGO_URI).then(()=>{
-    console.log("connected to database");
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('Connected to MongoDB');
+}).catch((err) => {
+  console.error('Error connecting to MongoDB:', err.message);
+  process.exit(1);
 });
 
 app.use(express.urlencoded({extended:false}));
@@ -60,6 +66,8 @@ const server = app.listen(PORT, '0.0.0.0', () => {
 
 server.keepAliveTimeout = 120 * 1000; // 120 seconds
 server.headersTimeout = 120 * 1000;  // 120 seconds
+
+
 
 
 
