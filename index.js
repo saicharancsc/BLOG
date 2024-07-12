@@ -21,7 +21,7 @@ const PORT= process.env.PORT ||2000;
 //it is dynamical variable
 //export PORT = some portno. 
 
-mongoose.connect(process.env.MONGO_URL).then(()=>{
+mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("connected to database");
 });
 
